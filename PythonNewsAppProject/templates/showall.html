@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h2>კეთილი იყოს თქვენი მობრძანება ნიუსების აპლიკაციაში</h2>
+
+<body>
+    <button><a href="add">ნიუსის დამატება</a></button>
+</body>
+<h2>{{ the_title }}</h2>
+
+<table>
+    <tr>
+        {% for row_title in the_row_titles %}
+            <th>{{ row_title }}</th>
+
+        {% endfor %}
+    </tr>
+    {% for data_row in the_data %}
+        {% set id = data_row.0 %}
+        <tr>
+            {% for item in data_row[1:] %}
+                <td>{{ item }}</td>
+            {% endfor %}
+            <td><a href="change/{{ id }}">შეცვლა</a></td>
+            <td><a href="delete/{{ id }}">წაშლა</a></td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

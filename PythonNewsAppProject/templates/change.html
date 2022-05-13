@@ -1,0 +1,129 @@
+{%  extends 'base.html' %}
+
+{% block body %}
+<style>
+body {
+  font-family:      Verdana, Geneva, Arial, sans-serif;
+  font-size:        medium;
+  background-color: #ffcc66;
+  margin-top:       5%;
+  margin-bottom:    5%;
+  margin-left:      10%;
+  margin-right:     10%;
+  border:           1px dotted gray;
+  padding:          10px 10px 10px 10px;
+}
+a {
+  text-decoration:  none;
+  font-weight:      600;
+}
+a:hover {
+  text-decoration:  underline;
+}
+a img {
+  border:           0;
+}
+h2 {
+  font-size:        150%;
+}
+table {
+  margin-left:      20px;
+  margin-right:     20px;
+  caption-side:     bottom;
+  border-collapse:  collapse;
+}
+td, th {
+  padding:          5px;
+  text-align:       left;
+}
+.copyright {
+  font-size:        75%;
+  font-style:       italic;
+}
+.slogan {
+  font-size:        75%;
+  font-style:       italic;
+}
+.confirmentry {
+  font-weight:      600;
+}
+
+/*** Tables ***/
+
+table {
+font-size:          1em;
+background-color:   #fafcff;
+border:             1px solid #909090;
+color:              #2a2a2a;
+padding:            5px 5px 2px;
+border-collapse:    collapse;
+}
+
+td, th {
+border:             thin dotted gray;
+}
+
+/*** Inputs ***/
+input[type=text] {
+  font-size:        115%;
+  width:            30em;
+}
+input[type=submit] {
+  font-size:        125%;
+}
+select {
+  font-size:        125%;
+}
+.alert {
+  padding: 20px;
+  background-color: mediumseagreen;
+  color: white;
+  margin-bottom: 15px;
+}
+
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
+{% for message in get_flashed_messages() %}
+
+    <div class="alert">
+        {{ message }}
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+
+{% endfor %}
+<table>
+    {% if author %}
+        <h1>Hello {{ author }}</h1>
+    {% else %}
+        <h1>ნიუსის შეცვლა</h1>
+        <br/>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.title.label() }}<br/>
+            {{ form.title(value=title_to_update) }}<br/>
+            {{ form.description.label() }}<br/>
+            {{ form.description(value=description_to_update) }}<br/>
+            {{ form.category.label() }}<br/>
+            {{ form.category(value=category_to_update) }}<br/>
+            {{ form.author.label() }}<br/>
+            {{ form.author(value=author_to_update) }}<br/>
+            {{ form.submit() }}
+        <button><a href="/">დაბრუნება</a></button>
+        </form>
+    {% endif %}
+</table>
+{% endblock %}

@@ -1,0 +1,11 @@
+{%  extends 'base.html' %}
+{% block body %}
+        <h1>ნიუსის წაშლა</h1>
+        <br/>
+        <form method="DELETE">
+            {{ form.hidden_tag() }}
+            {{ form.id.label() }}<br/>
+            {{ form.id() }}<br/>
+            {{ form.submit() }}
+        </form>
+{% endblock %}

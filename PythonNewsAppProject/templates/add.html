@@ -1,0 +1,57 @@
+{%  extends 'base.html' %}
+
+{% block body %}
+<style>
+.alert {
+  padding: 20px;
+  background-color: mediumseagreen;
+  color: white;
+  margin-bottom: 15px;
+}
+
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
+{% for message in get_flashed_messages() %}
+
+    <div class="alert">
+        {{ message }}
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+
+{% endfor %}
+    {% if author %}
+        <h1>Hello {{ author }}</h1>
+    {% else %}
+        <h1>ნიუსის დამატება</h1>
+        <br/>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.title.label() }}<br/>
+            {{ form.title() }}<br/>
+            {{ form.description.label() }}<br/>
+            {{ form.description() }}<br/>
+            {{ form.category.label() }}<br/>
+            {{ form.category() }}<br/>
+            {{ form.author.label() }}<br/>
+            {{ form.author() }}<br/>
+            {{ form.submit() }}
+            <button><a href="/">დაბრუნება</a></button>
+        </form>
+    {% endif %}
+
+{% endblock %}
+
